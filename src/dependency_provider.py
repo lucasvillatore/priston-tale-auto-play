@@ -1,9 +1,13 @@
 from src.infra.win32.mouse_device import MouseDevice
 from src.infra.win32.keyboard_device import KeyboardDevice
+from src.use_cases.attack_use_case import AttackUseCase
+from src.use_cases.collect_dropped_item_use_case import CollectDroppedItemUseCase
 from src.use_cases.fill_potions_use_case import FillPotionsUseCase
 from src.use_cases.rebuff_use_case import RebuffUseCase
 from src.infra.queue.actions_queue import ActionsQueue
 from typing import cast
+
+from src.use_cases.use_potion_use_case import UsePotionUseCase
 
 class DependencyProvider:
     """
@@ -92,7 +96,57 @@ class DependencyProvider:
         self._set_dependency('fill_potions_use_case', use_case)
 
         return use_case
+
+    def get_attack_use_case(self) -> AttackUseCase:
+        """
+        Get the attack use case dependency.
+        :param attack_use_case: The attack use case instance to get.
+        """
+
+        dep = self._get_dependency('attack_use_case')
+        if dep is not None:
+            return cast(AttackUseCase, dep)
+
+        use_case = AttackUseCase(self.get_keyboard_device(),
+                                 self.get_mouse_device())
+
+        self._set_dependency('attack_use_case', use_case)
+
+        return use_case
     
+    def get_use_potion_use_case(self) -> UsePotionUseCase:
+        """
+        Get the use potion use case dependency.
+        :param use_potion_use_case: The use potion use case instance to get.
+        """
+
+        dep = self._get_dependency('use_potion_use_case')
+        if dep is not None:
+            return cast(UsePotionUseCase, dep)
+
+        use_case = UsePotionUseCase(self.get_keyboard_device())
+
+        self._set_dependency('use_potion_use_case', use_case)
+
+        return use_case
+    
+    def get_collect_dropped_item_use_case(self) -> CollectDroppedItemUseCase:
+        """
+        Get the collect dropped item use case dependency.
+        :param collect_dropped_item_use_case: The collect dropped item use case instance to get.
+        """
+
+        dep = self._get_dependency('collect_dropped_item_use_case')
+        if dep is not None:
+            return cast(CollectDroppedItemUseCase, dep)
+
+        use_case = CollectDroppedItemUseCase(self.get_keyboard_device(),
+                                             self.get_mouse_device())
+
+        self._set_dependency('collect_dropped_item_use_case', use_case)
+
+        return use_case
+
     def get_actions_queue(self) -> ActionsQueue:
         """
         Get the actions queue dependency.
