@@ -1,13 +1,13 @@
 import heapq
-
 from src.use_cases.use_case_base import UseCaseBase
+from typing import List, Tuple, Dict, Any
 
 class ActionsQueue:
     def __init__(self):
-        self._queue = []
+        self._queue: List[Tuple[int, int, Dict[str, Any]]] = []
         self._index = 0
 
-    def add_action(self, action: UseCaseBase, *args, delay=5):
+    def add_action(self, action: UseCaseBase, *args: Any, delay: float = 5):
         heapq.heappush(self._queue, (action.priority, self._index, {
             'action': action,
             'args': args,

@@ -3,6 +3,7 @@ from src.infra.win32.keyboard_device import KeyboardDevice
 from src.use_cases.fill_potions_use_case import FillPotionsUseCase
 from src.use_cases.rebuff_use_case import RebuffUseCase
 from src.infra.queue.actions_queue import ActionsQueue
+from typing import cast
 
 class DependencyProvider:
     """
@@ -19,21 +20,22 @@ class DependencyProvider:
         return cls._instance
 
     def _initialize_dependencies(self):
-        self.dependencies = {}
+        self.dependencies: dict[str, object] = {}
 
-    def _get_dependency(self, name):
+    def _get_dependency(self, name: str) -> object | None:
         return self.dependencies.get(name)
 
-    def _set_dependency(self, name, dependency):
+    def _set_dependency(self, name: str, dependency: object):
         self.dependencies[name] = dependency
 
-    def get_keyboard_device(self):
+    def get_keyboard_device(self) -> KeyboardDevice:
         """
         Set the keyboard device dependency.
         This method should be implemented to set the keyboard device.
         """
-        if (self._get_dependency('keyboard_device') is not None):
-            return self._get_dependency('keyboard_device')
+        dep = self._get_dependency('keyboard_device')
+        if dep is not None:
+            return cast(KeyboardDevice, dep)
         
         keyboard_device = KeyboardDevice()
 
@@ -41,14 +43,15 @@ class DependencyProvider:
 
         return keyboard_device
 
-    def get_mouse_device(self):
+    def get_mouse_device(self) -> MouseDevice:
         """
         Get the mouse device dependency.
         This method should be implemented to get the mouse device.
         """
 
-        if (self._get_dependency('mouse_device') is not None):
-         return self._get_dependency('mouse_device')
+        dep = self._get_dependency('mouse_device')
+        if dep is not None:
+            return cast(MouseDevice, dep)
         
         mouse_device = MouseDevice(speed=15) 
     
@@ -56,14 +59,15 @@ class DependencyProvider:
 
         return mouse_device
 
-    def get_rebuff_use_case(self):
+    def get_rebuff_use_case(self) -> RebuffUseCase:
         """
         Get the rebuff use case dependency.
         :param rebuff_use_case: The rebuff use case instance to get.
         """
 
-        if (self._get_dependency('rebuff_use_case') is not None):
-            return self._get_dependency('rebuff_use_case')
+        dep = self._get_dependency('rebuff_use_case')
+        if dep is not None:
+            return cast(RebuffUseCase, dep)
         
         use_case = RebuffUseCase(self.get_keyboard_device(),
                                  self.get_mouse_device())
@@ -72,14 +76,15 @@ class DependencyProvider:
 
         return use_case 
     
-    def get_fill_potions_use_case(self):
+    def get_fill_potions_use_case(self) -> FillPotionsUseCase:
         """
         Get the fill potions use case dependency.
         :param fill_potions_use_case: The fill potions use case instance to get.
         """
 
-        if (self._get_dependency('fill_potions_use_case') is not None):
-            return self._get_dependency('fill_potions_use_case')
+        dep = self._get_dependency('fill_potions_use_case')
+        if dep is not None:
+            return cast(FillPotionsUseCase, dep)
 
         use_case = FillPotionsUseCase(self.get_keyboard_device(),
                                       self.get_mouse_device())
@@ -88,13 +93,14 @@ class DependencyProvider:
 
         return use_case
     
-    def get_actions_queue(self):
+    def get_actions_queue(self) -> ActionsQueue:
         """
         Get the actions queue dependency.
         This method should be implemented to get the actions queue.
         """
-        if (self._get_dependency('priority_queue') is not None):
-            return self._get_dependency('priority_queue')
+        dep = self._get_dependency('priority_queue')
+        if dep is not None:
+            return cast(ActionsQueue, dep)
 
         actions_queue = ActionsQueue()
 

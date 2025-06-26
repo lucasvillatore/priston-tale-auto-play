@@ -3,27 +3,27 @@ import win32con
 import time
 
 class KeyboardDevice:
-    def __init__(self, delay_between_keys=0.05):
+    def __init__(self, delay_between_keys:float=0.05):
         self.delay = delay_between_keys
 
-    def press(self, hexKeyCode):
+    def press(self, hex_code_key: int):
         """Pressiona e solta a tecla rapidamente."""
-        win32api.keybd_event(hexKeyCode, 0, 0, 0)  # Key down
+        win32api.keybd_event(hex_code_key, 0, 0, 0)  # type: ignore # Key down
         time.sleep(self.delay)
-        win32api.keybd_event(hexKeyCode, 0, win32con.KEYEVENTF_KEYUP, 0)  # Key up
+        win32api.keybd_event(hex_code_key, 0, win32con.KEYEVENTF_KEYUP, 0)  # type: ignore # Key up
         time.sleep(self.delay)
 
-    def hold(self, hexKeyCode):
+    def hold(self, hex_code_key: int):
         """Segura a tecla (key down)."""
-        win32api.keybd_event(hexKeyCode, 0, 0, 0)
+        win32api.keybd_event(hex_code_key, 0, 0, 0) # type: ignore
         time.sleep(self.delay)
 
-    def release(self, hexKeyCode):
+    def release(self, hex_code_key: int):
         """Solta a tecla (key up)."""
-        win32api.keybd_event(hexKeyCode, 0, win32con.KEYEVENTF_KEYUP, 0)
+        win32api.keybd_event(hex_code_key, 0, win32con.KEYEVENTF_KEYUP, 0) # type: ignore
         time.sleep(self.delay)
 
-    def hold_with_sequence(self, hold_key, sequence):
+    def hold_with_sequence(self, hold_key: int, sequence: list[int]):
         """
         Segura uma tecla enquanto executa uma sequência de teclas.
         :param hold_key: tecla a ser segurada

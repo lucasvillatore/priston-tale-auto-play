@@ -30,9 +30,14 @@ def main():
         print("Waiting for actions...")
         if actions_queue.has_action():
             action = actions_queue.get_next_action()
-            use_case = action.get('action')
-            args = action.get('args', None)
-            delay = action.get('delay', 0)
+            if action is not None:
+                use_case = action.get('action')
+                args = action.get('args', None)
+                delay = action.get('delay', 0)
 
-            use_case.execute(*args)
-            time.sleep(delay)
+                if use_case is not None:
+                    if args is not None:
+                        use_case.execute(*args)
+                    else:
+                        use_case.execute()
+                    time.sleep(delay)

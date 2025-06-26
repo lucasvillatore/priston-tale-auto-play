@@ -15,7 +15,7 @@ class RebuffUseCase(UseCaseBase):
         self.keyboard = keyboard
         self.mouse = mouse
 
-    def execute(self, buff):
+    def execute(self, buff:int):
         """
         Execute the rebuffing logic.
         :param buffs: List of buffs to use.

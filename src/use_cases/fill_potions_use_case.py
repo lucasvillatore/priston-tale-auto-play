@@ -16,7 +16,9 @@ class FillPotionsUseCase(UseCaseBase):
         self.keyboard = keyboard
         self.mouse = mouse
 
-    def execute(self, *args, **kwargs):
+    from typing import Any
+
+    def execute(self, *args: Any, **kwargs: Any) -> None:
         """
         Execute the fill potions action.
         """
