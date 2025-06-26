@@ -1,0 +1,38 @@
+import time
+from src.dependency_provider import DependencyProvider
+from src.infra.win32 import keys
+
+def main():
+
+    dependency_provider = DependencyProvider()
+    
+    rebuff_use_case = dependency_provider.get_rebuff_use_case()
+    fill_potions_use_case = dependency_provider.get_fill_potions_use_case()
+    actions_queue = dependency_provider.get_actions_queue()
+
+    buffs = [
+        keys.VK_F2,  
+        keys.VK_F3,  
+        keys.VK_F4,  
+        keys.VK_F5, 
+        keys.VK_F6,  
+    ]
+
+    actions_queue.add_action(fill_potions_use_case, None, delay=5)
+
+    for buff in buffs:
+        print(f"Adding buff {buff} to actions queue")
+        actions_queue.add_action(rebuff_use_case, buff, delay=1.5)
+
+    time.sleep(2)
+
+    while True:
+        print("Waiting for actions...")
+        if actions_queue.has_action():
+            action = actions_queue.get_next_action()
+            use_case = action.get('action')
+            args = action.get('args', None)
+            delay = action.get('delay', 0)
+
+            use_case.execute(*args)
+            time.sleep(delay)

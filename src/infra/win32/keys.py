@@ -1,0 +1,25 @@
+# Teclas de função
+VK_F1 = 0x70
+VK_F2 = 0x71
+VK_F3 = 0x72
+VK_F4 = 0x73
+VK_F5 = 0x74
+VK_F6 = 0x75
+VK_F7 = 0x76
+VK_F8 = 0x77
+
+# Letras
+VK_W = 0x57
+VK_A = 0x41
+VK_V = 0x56
+
+# Shift (tecla SHIFT esquerda)
+VK_SHIFT = 0x10
+
+# Espaço
+VK_SPACE = 0x20
+
+# Números
+VK_1 = 0x31
+VK_2 = 0x32
+VK_3 = 0x33
