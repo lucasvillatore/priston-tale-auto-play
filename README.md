@@ -22,10 +22,10 @@ O núcleo do projeto já conta com uma arquitetura baseada em filas de ações:
 A lógica de decisão central ("o cérebro do bot") está em fase de planejamento e desenvolvimento. O objetivo não é criar scripts lineares, mas sim um sistema reativo baseada em Visão Computacional.
 
 A arquitetura planejada para o Ciclo de Decisão segue 4 etapas:
-1. Captura Visual (Snapshot): Um modelo de IA/Visão Computacional captura o frame atual da janela do jogo.
-2. Extração de Contexto: O sistema processa a imagem para extrair informações vitais (Nível de HP/MP, presença de monstros, itens raros no chão, status dos buffs).
-3. Fila de Prioridades (Heurística): Com base nos dados extraídos, as ações são inseridas em uma fila dinâmica.
-4. Execução: O consumidor da fila retira a ação de maior prioridade e delega para os controladores de Mouse/Teclado executarem.
+1. **Captura Visual (Snapshot):** Um modelo de IA/Visão Computacional captura o frame atual da janela do jogo.
+2. **Extração de Contexto:** O sistema processa a imagem para extrair informações vitais (Nível de HP/MP, presença de monstros, itens raros no chão, status dos buffs).
+3. **Fila de Prioridades (Heurística):** Com base nos dados extraídos, as ações são inseridas em uma fila dinâmica.
+4. **Execução:** O consumidor da fila retira a ação de maior prioridade e delega para os controladores de Mouse/Teclado executarem.
 
 
 ## Controle do Mouse
