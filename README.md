@@ -86,3 +86,12 @@ Automação para reabastecer o cinto de poções usando o inventário.
 - Execução: Utiliza a classe KeyboardDevice para segurar a tecla SHIFT (modificador) e pressiona sequencialmente 1, 2 ou 3, movendo pilhas inteiras de poções do inventário para o cinto instantaneamente.
 
 Nesse ponto, precisa identificar onde está as poções no inventário para dar como coordenada para o bot.
+
+## Roadmap
+
+- [x] Implementar fila de ações.
+- [x] Implementar movimentação de mouse.
+- [x] Implementar teclado.
+- [x] Implementar ações básicas.
+- [ ] Treinar modelo para identificar ações.
+- [ ] Criar interface visual para configuração de uso.
