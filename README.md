@@ -94,4 +94,5 @@ Nesse ponto, precisa identificar onde está as poções no inventário para dar 
 - [x] Implementar teclado.
 - [x] Implementar ações básicas.
 - [ ] Treinar modelo para identificar ações.
+- [ ] Implementar uso das ações com base nos resultados do modelo
 - [ ] Criar interface visual para configuração de uso.
